@@ -27,11 +27,11 @@ namespace Core.Player.Controllers
             
             for (var i = 0; i < count; i++)
             {
-                var card = UnityEngine.Object.Instantiate(_cardViewPrefab);
+                var card = UnityEngine.Object.Instantiate(_cardViewPrefab, parent, false);
                 // метод с настройкой карты
                 listCards.Add(card);
             }
-            _playerViewInstance.DisplayCards(listCards, parent);
+            _playerViewInstance.Init(listCards);
         }
     }
 }

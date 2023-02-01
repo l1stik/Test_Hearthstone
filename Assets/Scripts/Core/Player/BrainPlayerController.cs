@@ -8,7 +8,7 @@ namespace Core.Player
     public class BrainPlayerController
     {
         [Inject]
-        private CardsHolder _cardsHolder;
+        private FieldCardsHolder _fieldCardsHolder;
         
         [Inject(Id = 0)]
         private PlayerController _aiPlayerController;
@@ -19,10 +19,10 @@ namespace Core.Player
         public void Preparation()
         {
             _aiPlayerController.GenerateCardPool(
-                Random.Range(1, 8), _cardsHolder.HolderForAiPlayer);
+                Random.Range(1, 8), _fieldCardsHolder.HolderForAiPlayer);
             
             _participantPlayerController.GenerateCardPool(
-                Random.Range(1, 8), _cardsHolder.HolderForPlayer);
+                Random.Range(1, 8), _fieldCardsHolder.HolderForPlayer);
         }
     }
 }

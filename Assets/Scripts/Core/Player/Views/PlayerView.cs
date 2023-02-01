@@ -8,9 +8,14 @@ namespace Core.Player.Views
     {
         private List<CardView> _cardViews;
 
-        public void DisplayCards(List<CardView> cardViews, Transform parent)
+        public void Init(List<CardView> cardViews)
         {
-            transform.SetParent(parent);
+            _cardViews = cardViews;
+        }
+        
+        public void DisplayAnimation(CardView cardView)
+        {
+            
         }
     }
 }

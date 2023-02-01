@@ -7,11 +7,25 @@ namespace Core.Card
     [RequireComponent(typeof(DragAndDropComponent))]
     public class CardView : MonoBehaviour
     {
-        private event Action OnTriggerEvent = delegate { };
+
+        private const string fieldTag = "Field";
+        private event Action OnTriggerEnterEvent = delegate { };
+        private event Action OnTriggerExitEvent = delegate { };
         
         private void OnTriggerEnter(Collider other)
         {
-            OnTriggerEvent?.Invoke();
+            if (other.transform.CompareTag(fieldTag))
+            {
+                OnTriggerEnterEvent?.Invoke();
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.transform.CompareTag(fieldTag))
+            {
+                OnTriggerExitEvent?.Invoke();
+            }
         }
     }
 }

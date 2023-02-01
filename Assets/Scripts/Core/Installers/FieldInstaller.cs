@@ -1,18 +1,19 @@
 using Core.Field;
 using Core.Other;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core.Installers
 {
     public class FieldInstaller : BaseMonoInstaller
     {
-        [SerializeField]
-        private CardsHolder _cardsHolder;
+        [FormerlySerializedAs("_cardsHolder")] [SerializeField]
+        private FieldCardsHolder fieldCardsHolder;
         
         public override void InstallBindings()
         {
             BindNonMonoBehaviourClassAsSingle<FieldController>();
-            BindObjectFromInstance(_cardsHolder);
+            BindObjectFromInstance(fieldCardsHolder);
         }
     }
 }
