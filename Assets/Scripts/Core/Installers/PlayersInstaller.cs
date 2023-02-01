@@ -20,7 +20,7 @@ namespace Core.Installers
             BindNonMonoBehaviourClassWithConcreteId<PlayerController>(EnemyPlayerControllerId);
             BindNonMonoBehaviourClassWithConcreteId<PlayerController>(PlayerControllerId);
             
-            BindNonMonoBehaviourClassAsSingle<BrainPlayerController>();
+            BindNonMonoBehaviourClassAsSingle<BrainPlayersController>();
         }
     }
 }

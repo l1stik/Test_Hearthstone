@@ -5,7 +5,8 @@ using Zenject;
 
 namespace Core.Player
 {
-    public class BrainPlayerController
+    // mediator
+    public class BrainPlayersController
     {
         [Inject]
         private FieldCardsHolder _fieldCardsHolder;
@@ -23,6 +24,15 @@ namespace Core.Player
             
             _participantPlayerController.GenerateCardPool(
                 Random.Range(1, 8), _fieldCardsHolder.HolderForPlayer);
+        }
+        
+        
+        public void RunBattle()
+        {
+        }
+        
+        public void FinishBattle()
+        {
         }
     }
 }

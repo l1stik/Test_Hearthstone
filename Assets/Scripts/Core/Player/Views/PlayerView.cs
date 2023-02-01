@@ -17,5 +17,10 @@ namespace Core.Player.Views
         {
             
         }
+        
+        public void ChangeCardData(CardView cardView)
+        {
+            
+        }
     }
 }
