@@ -1,3 +1,4 @@
+using System.Threading;
 using Core.Other;
 using Core.Player.Controllers;
 using UnityEngine;
@@ -17,13 +18,20 @@ namespace Core.Player
         [Inject(Id = 1)]
         private PlayerController _participantPlayerController;
         
-        public void Preparation()
+        CancellationTokenSource _cancelTokenSourceForPlayer = new CancellationTokenSource();
+        
+        CancellationTokenSource _cancelTokenSourceForAi = new CancellationTokenSource();
+        
+        public async void Preparation()
         {
+            _participantPlayerController.GenerateCardPool(
+                Random.Range(1, 8), _fieldCardsHolder.HolderForPlayer);
+            
             _aiPlayerController.GenerateCardPool(
                 Random.Range(1, 8), _fieldCardsHolder.HolderForAiPlayer);
             
-            _participantPlayerController.GenerateCardPool(
-                Random.Range(1, 8), _fieldCardsHolder.HolderForPlayer);
+            await _participantPlayerController.ChooseCard(_cancelTokenSourceForPlayer);
+            _aiPlayerController.ChooseCard(_cancelTokenSourceForAi);
         }
         
         
