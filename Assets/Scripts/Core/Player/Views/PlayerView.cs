@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using Core.Card;
+using Core.Player.Controllers;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Player.Views
 {
     public class PlayerView : MonoBehaviour
     {
-        private List<CardView> _cardViews;
+        [Inject]
+        private PlayerController _playerController;
 
-        public void Init(List<CardView> cardViews)
+        public void Init()
         {
-            _cardViews = cardViews;
+            
         }
         
         public void DisplayAnimation(CardView cardView)

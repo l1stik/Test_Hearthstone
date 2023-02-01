@@ -11,11 +11,15 @@ namespace Core.Installers
         private const int PlayerControllerId = 1;
         
         [SerializeField]
-        private PlayerView _playerViewPrefab;
+        private PlayerView _playerView;
         
-        public override void InstallBindings() 
+        [SerializeField]
+        private PlayerView _aiPlayerView;
+        
+        public override void InstallBindings()
         {
-            BindObjectFromInstance(_playerViewPrefab);
+            BindObjectFromInstance(_playerView);
+            BindObjectFromInstance(_aiPlayerView);
             
             BindNonMonoBehaviourClassWithConcreteId<PlayerController>(EnemyPlayerControllerId);
             BindNonMonoBehaviourClassWithConcreteId<PlayerController>(PlayerControllerId);
