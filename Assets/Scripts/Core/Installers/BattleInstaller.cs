@@ -7,7 +7,7 @@ namespace Core.Installers
     {
         public override void InstallBindings()
         {
-            BindNonMonoBehaviourClassAsSingle<BattleController>();
+            BindNonMonoBehaviourClassAsSingle<BattleStateController>();
 
         }
     }

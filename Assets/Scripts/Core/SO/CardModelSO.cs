@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CardModelSO : MonoBehaviour
+namespace Core.SO
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CardModelSO : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // конфиг для карты
     }
 }

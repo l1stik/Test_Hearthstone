@@ -24,6 +24,11 @@ namespace Core.Installers
         {
             Container.Bind<T>().WithConcreteId(id);
         }
+        
+        protected void BindNonMonoBehaviourClassFromInstanceWithConcreteId<T>(T instance, int id) 
+        {
+            Container.Bind<T>().FromInstance(instance).WithConcreteId(id);
+        }
 
         protected void BindObjectFromHierarchy<T>() 
         {

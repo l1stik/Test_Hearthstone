@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Core.Card;
+using Core.Field;
 using UnityEngine;
 using Zenject;
-using Task = System.Threading.Tasks.Task;
 
 namespace Core.Player.Controllers
 {
@@ -15,7 +13,12 @@ namespace Core.Player.Controllers
 
         private List<CardView> _cardsView;
 
-        private CancellationTokenSource _cancelTokenSource;
+        private FieldController _fieldController;
+
+        public void Initialize(FieldController fieldController)
+        {
+            _fieldController = fieldController;
+        }
 
         public void GenerateCardPool(int count, Transform parent)
         {
@@ -28,25 +31,14 @@ namespace Core.Player.Controllers
             }
         }
 
-        public void EndCardsChoice()
+        public void AddCardToField(CardView cardView)
         {
-            _cancelTokenSource.Cancel();
+            _fieldController.AddCardToField(cardView);
         }
-
-        public async Task<Task> ChooseCard(CancellationTokenSource cancelTokenSource)
+        
+        public void RemoveCardFromField(CardView cardView)
         {
-            var token = cancelTokenSource.Token;
-            
-            Task task = new Task(() =>
-            {
-                if (token.IsCancellationRequested)
-                {
-                    
-                }
-            }, token);
-            task.Start();
-            
-            return Task.CompletedTask;
+            _fieldController.RemoveCardFromField(cardView);
         }
     }
 }

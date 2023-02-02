@@ -1,4 +1,5 @@
 using System.Threading;
+using System.Threading.Tasks;
 using Core.Other;
 using Core.Player.Controllers;
 using UnityEngine;
@@ -6,7 +7,6 @@ using Zenject;
 
 namespace Core.Player
 {
-    // mediator
     public class BrainPlayersController
     {
         [Inject]
@@ -18,11 +18,15 @@ namespace Core.Player
         [Inject(Id = 1)]
         private PlayerController _participantPlayerController;
         
+        [Inject] 
+        private PlayerChooseCardProcess _playerChooseCardProcess;
+        
+        [Inject] 
+        private AiChooseCardProcess _aiChooseCardProcess;
+
         CancellationTokenSource _cancelTokenSourceForPlayer = new CancellationTokenSource();
         
-        CancellationTokenSource _cancelTokenSourceForAi = new CancellationTokenSource();
-        
-        public async void Preparation()
+        public async Task<Task> Preparation()
         {
             _participantPlayerController.GenerateCardPool(
                 Random.Range(1, 8), _fieldCardsHolder.HolderForPlayer);
@@ -30,17 +34,10 @@ namespace Core.Player
             _aiPlayerController.GenerateCardPool(
                 Random.Range(1, 8), _fieldCardsHolder.HolderForAiPlayer);
             
-            await _participantPlayerController.ChooseCard(_cancelTokenSourceForPlayer);
-            _aiPlayerController.ChooseCard(_cancelTokenSourceForAi);
-        }
-        
-        
-        public void RunBattle()
-        {
-        }
-        
-        public void FinishBattle()
-        {
+            _aiChooseCardProcess.RunChooseCardProcess();
+            await _playerChooseCardProcess.RunChooseCardProcess(_cancelTokenSourceForPlayer);
+            
+            return Task.CompletedTask;
         }
     }
 }

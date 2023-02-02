@@ -7,10 +7,15 @@ namespace Core.Card
     [RequireComponent(typeof(DragAndDropComponent))]
     public class CardView : MonoBehaviour
     {
-
         private const string fieldTag = "Field";
+       
+        [SerializeField]
+        private int _id;
+        
         private event Action OnTriggerEnterEvent = delegate { };
         private event Action OnTriggerExitEvent = delegate { };
+        
+        public int Id => _id;
         
         private void OnTriggerEnter(Collider other)
         {

@@ -1,43 +1,34 @@
+using System.Collections.Generic;
 using Core.Card;
-using Core.Player.Controllers;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 namespace Core.Player.Views
 {
     public class PlayerView : MonoBehaviour
     {
-
-        [SerializeField]
-        private Button _chooseCardButton;
+        private List<CardView> _cardsCollection;
         
-        [Inject]
-        private PlayerController _playerController;
-
-        private void Start()
-        {
-            _chooseCardButton.onClick.AddListener(_playerController.EndCardsChoice);
-        }
+        private AiChooseCardProcess _chooseCardProcess;
         
-        private void OnDestroy()
+        public void Initialize(AiChooseCardProcess chooseCardProcess)
         {
-            _chooseCardButton.onClick.RemoveListener(_playerController.EndCardsChoice);
+            _chooseCardProcess = chooseCardProcess;
         }
 
-        public void Init()
+        public void DisplayCards()
         {
             
         }
-        
-        public void DisplayAnimation(CardView cardView)
+
+        public void AddCard(CardView cardView)
         {
-            
+            _chooseCardProcess.AddCard(cardView);
         }
         
-        public void ChangeCardData(CardView cardView)
+        
+        public void RemoveCard(CardView cardView)
         {
-            
+            _chooseCardProcess.RemoveCard(cardView);
         }
     }
 }
