@@ -37,21 +37,21 @@ namespace Core.Installers
             
             
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<FieldController>(
-                aiFieldController, GameConstants.AiPlayerControllerId);
+                aiFieldController, GameConstants.AiPlayerId);
             
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<FieldController>(
-                playerFieldController, GameConstants.AiPlayerControllerId);
+                playerFieldController, GameConstants.AiPlayerId);
             
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<PlayerChooseCardProcess>(
-                playerChooseCardProcess, GameConstants.AiPlayerControllerId);
+                playerChooseCardProcess, GameConstants.AiPlayerId);
             
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<AiChooseCardProcess>(
-                aiChooseCardProcess, GameConstants.AiPlayerControllerId);
+                aiChooseCardProcess, GameConstants.AiPlayerId);
 
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<PlayerController>(
-                aiPlayerController, GameConstants.AiPlayerControllerId);
+                aiPlayerController, GameConstants.AiPlayerId);
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<PlayerController>(
-                playerController, GameConstants.PlayerControllerId);
+                playerController, GameConstants.PlayerId);
             
             BindNonMonoBehaviourClassAsSingle<BrainPlayersController>();
         }
