@@ -1,4 +1,5 @@
 using System;
+using Core.Card.Config;
 using Core.Other;
 using UnityEngine;
 
@@ -9,19 +10,24 @@ namespace Core.Card
     {
         private const string fieldTag = "Field";
        
-        [SerializeField]
-        private int _id;
+        private CardConfig _cardConfig;
+        private CardState _cardState;
         
-        private event Action OnTriggerEnterEvent = delegate { };
-        private event Action OnTriggerExitEvent = delegate { };
+        public event Action OnStateChanged = delegate { };
+
+        public string Name => _cardConfig.Name;
         
-        public int Id => _id;
+        public void SetCardConfig(CardConfig cardConfig)
+        {
+            _cardConfig = cardConfig;
+        }
         
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.CompareTag(fieldTag))
             {
-                OnTriggerEnterEvent?.Invoke();
+                _cardState = CardState.OnField;
+                OnStateChanged?.Invoke();
             }
         }
         
@@ -29,7 +35,8 @@ namespace Core.Card
         {
             if (other.transform.CompareTag(fieldTag))
             {
-                OnTriggerExitEvent?.Invoke();
+                _cardState = CardState.InHand;
+                OnStateChanged?.Invoke();
             }
         }
     }

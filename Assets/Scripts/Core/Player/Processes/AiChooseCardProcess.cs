@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using Core.Card;
 using Core.Player.Controllers;
 
-namespace Core.Player
+namespace Core.Player.Processes
 {
     public class AiChooseCardProcess
     {
@@ -25,7 +24,7 @@ namespace Core.Player
         
         public void RunChooseCardProcess()
         {
-            // выбирает карты
+            // синхронно выбирает карты
         }
     }
 }

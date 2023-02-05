@@ -2,6 +2,7 @@ using Core.Field;
 using Core.MetaData;
 using Core.Player;
 using Core.Player.Controllers;
+using Core.Player.Processes;
 using Core.Player.Views;
 using UnityEngine;
 
@@ -53,7 +54,7 @@ namespace Core.Installers
             BindNonMonoBehaviourClassFromInstanceWithConcreteId<PlayerController>(
                 playerController, GameConstants.PlayerId);
             
-            BindNonMonoBehaviourClassAsSingle<BrainPlayersController>();
+            BindNonMonoBehaviourClassAsSingle<BrainPlayers>();
         }
     }
 }

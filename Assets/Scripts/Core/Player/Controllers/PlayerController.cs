@@ -9,7 +9,7 @@ namespace Core.Player.Controllers
     public class PlayerController
     {
         [Inject]
-        private CardView _cardViewPrefab;
+        private CardBuilder _cardBuilder;
 
         private List<CardView> _cardsView;
 
@@ -22,13 +22,7 @@ namespace Core.Player.Controllers
 
         public void GenerateCardPool(int count, Transform parent)
         {
-            _cardsView = new List<CardView>(count);
-            for (var i = 0; i < count; i++)
-            {
-                var card = UnityEngine.Object.Instantiate(_cardViewPrefab, parent, false);
-                // метод с настройкой карты
-                _cardsView.Add(card);
-            }
+            _cardsView = _cardBuilder.BuildCard(count, parent);
         }
 
         public void AddCardToField(CardView cardView)

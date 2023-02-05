@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Core.Card;
 using Core.Player.Controllers;
 
-namespace Core.Player
+namespace Core.Player.Processes
 {
     public class PlayerChooseCardProcess
     {

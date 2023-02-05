@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Core.Battle;
 using Core.Card;
+using Core.Card.AnimationBehaviour;
+using Zenject;
 
 namespace Core.Field
 {
@@ -8,18 +11,25 @@ namespace Core.Field
     {
         private List<CardView> _cardsOnField;
         
+        [Inject] 
+        private CardAnimator _cardAnimator;
+
+        [Inject] 
+        private HandCalculator _handCalculator;
+
         public List<CardView> GetCardsOnField()
         {
             return _cardsOnField;
         }
         
-        public CardView GetCardOnField(int cardId)
+        public CardView GetCardOnField(string cardName)
         {
-            return _cardsOnField.First(card => card.Id == cardId);
+            return _cardsOnField.First(card => card.Name == cardName);
         }
         
         public void AddCardToField(CardView cardView)
         {
+            _cardAnimator.BuildCard(cardView);
             _cardsOnField.Add(cardView);
         }
         
@@ -31,6 +41,11 @@ namespace Core.Field
         public void RemoveCardsFromField()
         {
             _cardsOnField.Clear();
+        }
+        
+        public void CalculateDamage()
+        {
+            _handCalculator.FillHand();
         }
     }
 }

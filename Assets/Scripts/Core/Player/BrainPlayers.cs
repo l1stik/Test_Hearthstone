@@ -2,12 +2,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Core.Other;
 using Core.Player.Controllers;
+using Core.Player.Processes;
 using UnityEngine;
 using Zenject;
 
 namespace Core.Player
 {
-    public class BrainPlayersController
+    public class BrainPlayers
     {
         [Inject]
         private FieldCardsHolder _fieldCardsHolder;
