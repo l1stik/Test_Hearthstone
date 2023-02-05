@@ -13,9 +13,10 @@ namespace Core.Card
         private CardConfig _cardConfig;
         private CardState _cardState;
         
-        public event Action OnStateChanged = delegate { };
+        public event Action<CardView> OnStateChanged = delegate { };
 
         public string Name => _cardConfig.Name;
+        public CardState State => _cardState;
         
         public void SetCardConfig(CardConfig cardConfig)
         {
@@ -27,7 +28,7 @@ namespace Core.Card
             if (other.transform.CompareTag(fieldTag))
             {
                 _cardState = CardState.OnField;
-                OnStateChanged?.Invoke();
+                OnStateChanged?.Invoke(this);
             }
         }
         
@@ -36,7 +37,7 @@ namespace Core.Card
             if (other.transform.CompareTag(fieldTag))
             {
                 _cardState = CardState.InHand;
-                OnStateChanged?.Invoke();
+                OnStateChanged?.Invoke(this);
             }
         }
     }

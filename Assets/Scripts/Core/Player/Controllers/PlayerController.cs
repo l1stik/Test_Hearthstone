@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Card;
 using Core.Field;
@@ -23,6 +24,26 @@ namespace Core.Player.Controllers
         public void GenerateCardPool(int count, Transform parent)
         {
             _cardsView = _cardBuilder.BuildCard(count, parent);
+
+            foreach (var card in _cardsView)
+            {
+                card.OnStateChanged += MoveCard;
+            }
+        }
+
+        private void MoveCard(CardView cardView)
+        {
+            switch (cardView.State)
+            {
+                case CardState.InHand:
+                    RemoveCardFromField(cardView);
+                    break;
+                case CardState.OnField:
+                    AddCardToField(cardView);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void AddCardToField(CardView cardView)
