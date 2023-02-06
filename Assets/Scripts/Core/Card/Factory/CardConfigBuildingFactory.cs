@@ -6,14 +6,12 @@ namespace Core.Card.Factory
 {
     public class CardConfigBuildingFactory
     {
-        private const string PathToCardsConfig = "";
-        
         [Inject] 
         private DiContainer _diContainer;
         
-        public void LoadAndBind()
+        public void LoadAndBind(string pathConfig)
         {
-            var config = Resources.Load<CardScriptableObject>(PathToCardsConfig);
+            var config = Resources.Load<CardScriptableObject>(pathConfig);
             _diContainer.Bind<CardScriptableObject>().FromInstance(config).AsSingle();
         }
     }

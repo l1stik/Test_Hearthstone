@@ -44,8 +44,10 @@ namespace Core.Player.Processes
                 
             }, token);
             task.Start();
+
+            await task;
             
-            return task;
+            return Task.CompletedTask;
         }
     }
 }

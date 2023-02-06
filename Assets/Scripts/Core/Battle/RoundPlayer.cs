@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Core.Card;
 using Core.Field;
 using Core.Player;
 using Zenject;

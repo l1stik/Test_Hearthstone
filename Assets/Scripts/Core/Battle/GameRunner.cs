@@ -1,4 +1,5 @@
 using Core.Card.Factory;
+using Core.MetaData;
 using Zenject;
 
 namespace Core.Battle
@@ -9,9 +10,9 @@ namespace Core.Battle
         private RoundPlayer _roundPlayer;
         
         [Inject]
-        private GameRunner(CardConfigBuildingFactory cardConfigBuildingFactory)
+        private void Initialize(CardConfigBuildingFactory cardConfigBuildingFactory)
         {
-            cardConfigBuildingFactory.LoadAndBind();
+            cardConfigBuildingFactory.LoadAndBind(GameConstants.PathToCardsConfig);
         }
         
         public void PreparingForBattle()
